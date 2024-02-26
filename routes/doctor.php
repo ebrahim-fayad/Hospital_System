@@ -29,7 +29,18 @@ Route::group(
             Route::get('doctor/dashboard', [DoctorController::class, 'index'])->name('doctor.dashboard');
             Route::prefix('Doctor')->group(function () {
                 Route::resource('invoices', InvoiceController::class);
+                //############################# completed_invoices route ##########################################
+                Route::get('completed_invoices', [InvoiceController::class, 'completedInvoices'])->name('completedInvoices');
+                //############################# end invoices route ################################################
+
+                //############################# review_invoices route ##########################################
+                Route::get('review_invoices', [InvoiceController::class, 'reviewInvoices'])->name('reviewInvoices');
+            //############################# end invoices route #############################################
+
                 Route::resource('Diagnostics', DiagnosticController::class);
+                //############################# review_invoices route ##########################################
+                Route::post('add_review', [DiagnosticController::class, 'addReview'])->name('add_review');
+            //############################# end invoices route #############################################
             });
 
         });

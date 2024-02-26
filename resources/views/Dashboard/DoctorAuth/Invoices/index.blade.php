@@ -59,7 +59,9 @@
                                         {{--  <td><img src="{{ asset("Dashboard/img/invoices/$invoice->id.png") }}" height="50px"
                                                 width="50px" alt=""></td>  --}}
                                         <td class="text-center">{{ $invoice->Service->name ?? $invoice->Group->name }}</td>
-                                        <td class="text-center"><a href="{{route('Diagnostics.show',$invoice->patient_id)}}">{{ $invoice->Patient->name }}</a></td>
+                                        <td class="text-center"><a
+                                                href="{{ route('Diagnostics.show', $invoice->patient_id) }}">{{ $invoice->Patient->name }}</a>
+                                        </td>
                                         <td class="text-center">{{ number_format($invoice->price, 2) }}</td>
                                         <td class="text-center">{{ number_format($invoice->discount_value, 2) }}</td>
                                         <td class="text-center">{{ $invoice->tax_rate }}%</td>
@@ -87,8 +89,9 @@
                                                         data-target="#add_diagnosis{{ $invoice->id }}"><i
                                                             class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة
                                                         تشخيص </a>
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="text-warning far fa-file-alt"></i>&nbsp;&nbsp; اضافة
+                                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                                        data-target="#add_review{{ $invoice->id }}"><i
+                                                            class="text-warning far fa-file-alt"></i>&nbsp;&nbsp;اضافة
                                                         مراجعة </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                                         data-target="#update_password"><i
@@ -106,6 +109,7 @@
                                         </td>
                                     </tr>
                                     @include('Dashboard.DoctorAuth.Invoices.add_diagnosis')
+                                    @include('Dashboard.DoctorAuth.Invoices.add_review')
                                 @endforeach
                             </tbody>
                         </table>
@@ -125,4 +129,29 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
+  <!--Internal  Datepicker js -->
+    <script src="{{URL::asset('dashboard/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+    <!--Internal  jquery.maskedinput js -->
+    <script src="{{URL::asset('dashboard/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+    <!--Internal  spectrum-colorpicker js -->
+    <script src="{{URL::asset('dashboard/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+    <!-- Internal Select2.min js -->
+    <script src="{{URL::asset('dashboard/plugins/select2/js/select2.min.js')}}"></script>
+    <!--Internal Ion.rangeSlider.min js -->
+    <script src="{{URL::asset('dashboard/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+    <!--Internal  jquery-simple-datetimepicker js -->
+    <script src="{{URL::asset('dashboard/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+    <!-- Ionicons js -->
+    <script src="{{URL::asset('dashboard/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+    <!--Internal  pickerjs js -->
+    <script src="{{URL::asset('dashboard/plugins/pickerjs/picker.min.js')}}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{URL::asset('dashboard/js/form-elements.js')}}"></script>
+
+
+    <script>
+        $('#review_date').datetimepicker({
+
+        })
+    </script>
 @endsection

@@ -36,6 +36,10 @@ class DiagnosticController extends Controller
     {
         return $this->Diagnostic->store($request);
     }
+    public function addReview(Request $request)
+    {
+        return $this->Diagnostic->addReview($request);
+    }
 
     /**
      * Display the specified resource.
