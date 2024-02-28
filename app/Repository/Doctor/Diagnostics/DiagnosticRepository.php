@@ -5,6 +5,7 @@ namespace App\Repository\Doctor\Diagnostics;
 use App\Interfaces\Doctor\Diagnostics\DiagnosticRepositoryInterface;
 use App\Models\Diagnostic;
 use App\Models\Invoice;
+use App\Models\Ray;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -64,7 +65,8 @@ class DiagnosticRepository implements DiagnosticRepositoryInterface
      */
     function show($id) {
         $patient_records = Diagnostic::where('patient_id', $id)->get();
-        return view('Dashboard.DoctorAuth.Invoices.patient_record', compact('patient_records'));
+        $patient_rays = Ray::where('patient_id', $id)->get();
+        return view('Dashboard.DoctorAuth.Invoices.patient_record',get_defined_vars());
     }
     public function invoiceStatus($invoice_id,$status)
     {
