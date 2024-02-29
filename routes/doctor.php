@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\DoctorController;
 use App\Http\Controllers\Doctor\Diagnostics\DiagnosticController;
 use App\Http\Controllers\Doctor\Invoices\InvoiceController;
+use App\Http\Controllers\Doctor\Laboratories\LaboratoryController;
 use App\Http\Controllers\Doctor\Rays\RayController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -48,6 +49,11 @@ Route::group(
             Route::resource('rays', RayController::class);
 
             //############################# end rays route ######################################
+            //############################# Laboratories route ##########################################
+
+            Route::resource('Laboratories', LaboratoryController::class);
+
+            //############################# end rays Laboratories ######################################
 
 
         });
