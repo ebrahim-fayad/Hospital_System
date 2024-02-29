@@ -35,7 +35,7 @@ Route::group(
             return view('Dashboard.Users.index');
         })->middleware(['auth:web'])->name('user.dashboard');
 
-     
+
         Route::middleware('auth:admin')->group(function () {
             Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
             #################################### Sections Route ##############################
@@ -70,6 +70,10 @@ Route::group(
             //############################# Payment route ##########################################
             Route::resource('Payment', PaymentAccountController::class);
             //############################# end Payment route ######################################
+
+
+
+
         });
 
         require __DIR__ . '/auth.php';

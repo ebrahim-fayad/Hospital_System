@@ -102,7 +102,7 @@ class DoctorRepository implements DoctorRepositoryInterface
             $doctor->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => $doctor->password,
                 'section_id' => $request->section_id,
                 'phone' => $request->phone,
                 'price' => $request->price,
