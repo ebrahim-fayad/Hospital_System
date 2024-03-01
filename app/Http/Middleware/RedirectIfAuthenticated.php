@@ -29,9 +29,9 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::DOCTOR);
         }
 
-        // if (auth('ray_employee')->check()) {
-        //     return redirect(RouteServiceProvider::RayEmployee);
-        // }
+        if (auth('ray_employee')->check()) {
+            return redirect(RouteServiceProvider::RayEmployee);
+        }
 
         // if (auth('laboratories_employee')->check()) {
         //     return redirect(RouteServiceProvider::LABORATORIEEmployee);

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\RayEmployeeController as AuthRayEmployeeController;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
+use App\Http\Controllers\Dashboard\RayEmployeeController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\ServiceController;
@@ -34,8 +36,7 @@ Route::group(
         Route::get('user/dashboard', function () {
             return view('Dashboard.Users.index');
         })->middleware(['auth:web'])->name('user.dashboard');
-
-
+        Route::get('ray_employee/dashboard', [AuthRayEmployeeController::class, 'index'])->middleware('auth:ray_employee')->name('ray_employee');
         Route::middleware('auth:admin')->group(function () {
             Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
             #################################### Sections Route ##############################
@@ -71,6 +72,11 @@ Route::group(
             Route::resource('Payment', PaymentAccountController::class);
             //############################# end Payment route ######################################
 
+            //############################# RayEmployee route ##########################################
+
+            Route::resource('ray_employee', RayEmployeeController::class);
+
+        //############################# end RayEmployee route ######################################
 
 
 

@@ -108,10 +108,14 @@
                         <path d="M6.26 9L12 13.47 17.74 9 12 4.53z" opacity=".3" />
                         <path
                             d="M19.37 12.8l-7.38 5.74-7.37-5.73L3 14.07l9 7 9-7zM12 2L3 9l1.63 1.27L12 16l7.36-5.73L21 9l-9-7zm0 11.47L6.26 9 12 4.53 17.74 9 12 13.47z" />
-                    </svg><span class="side-menu__label">{{ trans('main-sidebar_trans.patients_list') }}</span><i class="angle fe fe-chevron-down"></i></a>
+                    </svg><span class="side-menu__label">{{ trans('main-sidebar_trans.patients_list') }}</span><i
+                        class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('Patients.index') }}">{{ trans('main-sidebar_trans.patients') }}</a></li>
-                    <li><a class="slide-item" href="{{ route('Patients.create') }}">{{ trans('main-sidebar_trans.add_patient') }}</a></li>
+                    <li><a class="slide-item"
+                            href="{{ route('Patients.index') }}">{{ trans('main-sidebar_trans.patients') }}</a></li>
+                    <li><a class="slide-item"
+                            href="{{ route('Patients.create') }}">{{ trans('main-sidebar_trans.add_patient') }}</a>
+                    </li>
                 </ul>
             </li>
             <li class="slide">
@@ -130,8 +134,12 @@
                     </svg><span class="side-menu__label">{{ trans('main-sidebar_trans.invoices') }}</span><i
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('single_invoice') }}">{{ trans('main-sidebar_trans.single_invoice') }}</a></li>
-                    <li><a class="slide-item" href="{{ route('invoices_Group') }}">{{ trans('main-sidebar_trans.group_services') }}</a></li>
+                    <li><a class="slide-item"
+                            href="{{ route('single_invoice') }}">{{ trans('main-sidebar_trans.single_invoice') }}</a>
+                    </li>
+                    <li><a class="slide-item"
+                            href="{{ route('invoices_Group') }}">{{ trans('main-sidebar_trans.group_services') }}</a>
+                    </li>
                 </ul>
             </li>
             <li class="slide">
@@ -154,17 +162,13 @@
                         <path d="M13 4H6v16h12V9h-5V4zm3 14H8v-2h8v2zm0-6v2H8v-2h8z" opacity=".3" />
                         <path
                             d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
-                    </svg><span class="side-menu__label">Forms</span><i class="angle fe fe-chevron-down"></i></a>
+                    </svg><span class="side-menu__label">الاشعة</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-elements')) }}">Form Elements</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-advanced')) }}">Advanced Forms</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-layouts')) }}">Form Layouts</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-validation')) }}">Form Validation</a>
-                    </li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-wizards')) }}">Form Wizards</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-editor')) }}">WYSIWYG Editor</a></li>
+                    <li><a class="slide-item" href="{{ route('ray_employee.index') }}">قائمة الموظفين</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-advanced')) }}">قائمة الكشوفات</a></li>
                 </ul>
             </li>
+
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">

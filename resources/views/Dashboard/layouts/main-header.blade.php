@@ -317,6 +317,8 @@
                             <form method="POST" action="{{ route('user.logout') }}">
                             @elseif (auth('admin')->check())
                                 <form method="POST" action="{{ route('logout.admin') }}">
+                            @elseif (auth('ray_employee')->check())
+                                <form method="POST" action="{{ route('ray_employee.logout') }}">
                                 @else
                                     <form method="POST" action="{{ route('doctor.logout') }}">
                         @endif

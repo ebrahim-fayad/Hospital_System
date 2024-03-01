@@ -196,6 +196,49 @@
                                                 </div>
                                             </div>
                                             {{--  #### End Doctor panel#####  --}}
+                                            {{--  #### ray_employee panel#####  --}}
+                                            <div class="panel" id="ray_employee">
+                                                <h5 class="text-primary">{{ trans('login_trans.X-ray_employee') }} </h5>
+                                                <form action="{{ route('ray_employee.login') }}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" placeholder="Enter your email"
+                                                            type="text" name="email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Password</label> <input class="form-control"
+                                                            placeholder="Enter your password" name="password"
+                                                            type="password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="checkbox" name="remember">
+                                                        <label class="form-check-label" for="remember-me">
+                                                            {{ trans('login_trans.Remember_Me') }}</label>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-main-primary btn-block">{{ trans('login_trans.sign_in') }}</button>
+                                                    <div class="row row-xs">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-block"><i
+                                                                    class="fab fa-facebook-f"></i>
+                                                                Signup with Facebook</button>
+                                                        </div>
+                                                        <div class="col-sm-6 mg-t-10 mg-sm-t-0">
+                                                            <button class="btn btn-info btn-block"><i
+                                                                    class="fab fa-twitter"></i> Signup with
+                                                                Twitter</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="main-signin-footer mt-5">
+                                                    <p><a href="">Forgot password?</a></p>
+                                                    <p>Donet have an account? <a
+                                                            href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                            an Account</a></p>
+                                                </div>
+                                            </div>
+                                            {{--  #### End ray_employee panel#####  --}}
                                         </div>
                                     </div>
                                 </div>
