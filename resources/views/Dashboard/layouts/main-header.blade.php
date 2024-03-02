@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="wd-90p">
                                     <div class="d-flex">
-                                        <h5 class="mb-1 name">Petey Cruiser</h5>
+                                        <h5 class="mb-1 name">{{ auth()->user()->name }} Cruiser</h5>
                                     </div>
                                     <p class="mb-0 desc">I'm sorry but i'm not sure how to help you with that......</p>
                                     <p class="time mb-0 text-left float-right mr-2 mt-2">Mar 15 3:55 PM</p>
@@ -286,24 +286,35 @@
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="">
-                        @if (auth('doctor')->check())
+                        @if (auth('doctor')->check() || auth('ray_employee')->check())
                             @if (auth()->user()->image)
                                 <img src="{{ asset('Dashboard/img/' . auth()->user()->image->fileName) }}"
                                     alt="">
                             @else
-                            <img src="{{ asset('Dashboard/img/doctor_default.png') }}"  alt="">
+                                <img src="{{ asset('Dashboard/img/doctor_default.png') }}" alt="">
                             @endif
-                            @else
+                        @else
                             <img alt="" src="{{ asset('Dashboard/img/faces/6.jpg') }}">
                         @endif
                     </a>
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
-                                <div class="main-img-user"><img alt=""
-                                        src="{{ URL::asset('Dashboard/img/faces/6.jpg') }}" class=""></div>
+                                <div class="main-img-user">
+                                    @if (auth('doctor')->check() || auth('ray_employee')->check())
+                                        @if (auth()->user()->image)
+                                            <img src="{{ asset('Dashboard/img/' . auth()->user()->image->fileName) }}"
+                                                alt="">
+                                        @else
+                                            <img src="{{ asset('Dashboard/img/doctor_default.png') }}"
+                                                alt="">
+                                        @endif
+                                    @else
+                                        <img alt="" src="{{ asset('Dashboard/img/faces/6.jpg') }}">
+                                    @endif
+                                </div>
                                 <div class="mr-3 my-auto">
-                                    <h6>Petey Cruiser</h6><span>Premium Member</span>
+                                    <h6>{{ auth()->user()->name }} </h6><span>{{ auth()->user()->email }}</span>
                                 </div>
                             </div>
                         </div>
@@ -317,10 +328,10 @@
                             <form method="POST" action="{{ route('user.logout') }}">
                             @elseif (auth('admin')->check())
                                 <form method="POST" action="{{ route('logout.admin') }}">
-                            @elseif (auth('ray_employee')->check())
-                                <form method="POST" action="{{ route('ray_employee.logout') }}">
-                                @else
-                                    <form method="POST" action="{{ route('doctor.logout') }}">
+                                @elseif (auth('ray_employee')->check())
+                                    <form method="POST" action="{{ route('ray_employee.logout') }}">
+                                    @else
+                                        <form method="POST" action="{{ route('doctor.logout') }}">
                         @endif
                         @csrf
                         <a class="dropdown-item" href="#"

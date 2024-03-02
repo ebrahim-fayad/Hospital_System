@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminController;
-use App\Http\Controllers\Auth\RayEmployeeController as AuthRayEmployeeController;
+// use App\Http\Controllers\Auth\RayEmployeeController;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
@@ -36,7 +36,9 @@ Route::group(
         Route::get('user/dashboard', function () {
             return view('Dashboard.Users.index');
         })->middleware(['auth:web'])->name('user.dashboard');
-        Route::get('ray_employee/dashboard', [AuthRayEmployeeController::class, 'index'])->middleware('auth:ray_employee')->name('ray_employee');
+
+        Route::get('ray_employee/dashboard', [RayEmployeeController::class, 'index'])->middleware('auth:ray_employee')->name('ray_employee');
+
         Route::middleware('auth:admin')->group(function () {
             Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
             #################################### Sections Route ##############################
@@ -49,8 +51,7 @@ Route::group(
             Route::resource('Services', ServiceController::class);
             Route::get('print_invoice/{id}', function ($id) {
                 $single_invoice = Invoice::findOrFail($id);
-                return view('Dashboard.Invoices.SingleInvoice.print',compact('single_invoice'));
-
+                return view('Dashboard.Invoices.SingleInvoice.print', compact('single_invoice'));
             })->name('print_invoice');
             Route::view('Add_GroupServices', 'Dashboard.group.index')->name('Add_GroupServices');
             #################################### Insurance Route ##############################
@@ -76,7 +77,7 @@ Route::group(
 
             Route::resource('ray_employee', RayEmployeeController::class);
 
-        //############################# end RayEmployee route ######################################
+            //############################# end RayEmployee route ######################################
 
 
 

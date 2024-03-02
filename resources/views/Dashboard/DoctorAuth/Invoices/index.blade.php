@@ -1,4 +1,4 @@
-@extends('Dashboard.layouts.DoctorLayouts.master-doctor')
+@extends('Dashboard.layouts.master')
 @section('title')
     الكشوفات
 @stop
@@ -112,7 +112,7 @@
                                     @include('Dashboard.DoctorAuth.Invoices.add_review')
                                     @include('Dashboard.DoctorAuth.Invoices.xray_conversion')
                                     @include('Dashboard.DoctorAuth.Invoices.Laboratorie_conversion')
-                                    
+
                                 @endforeach
                             </tbody>
                         </table>

@@ -3,6 +3,7 @@ namespace App\Repository\Admin\RayEmployees;
 use App\Interfaces\Admin\RayEmployees\RayEmployeeRepositoryInterface;
 use App\Models\RayEmployee;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -50,12 +51,13 @@ class RayEmployeeRepository  implements RayEmployeeRepositoryInterface
         DB::beginTransaction();
         try {
             $rayEmployee = RayEmployee::findOrFail($id);
-            $password = ($request->has('password')) ? Hash::make($request->password) : $rayEmployee->password;
-            $rayEmployee->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $password,
-            ]);
+            $input = $request->all();
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = Arr::except($input, ['password']);
+            }
+            $rayEmployee->update($input);
             if ($request->photo) {
                 $this->deleteImage('upload_image', $rayEmployee->id);
                 $this->uploadImage($request, 'upload_image', 'photo', 'RayEmployees', $rayEmployee->id, 'App\Models\RayEmployee');

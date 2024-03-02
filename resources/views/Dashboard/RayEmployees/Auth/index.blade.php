@@ -1,7 +1,7 @@
-@extends('Dashboard.layouts.DoctorLayouts.master-doctor')
+@extends('Dashboard.layouts.master')
 
 @section('title')
-{{ trans('Doctors.Doctors') }}
+{{ trans('login_trans.X-ray_employee') }}
 @stop
 
 @section('css')
