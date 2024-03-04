@@ -22,15 +22,15 @@ class RedirectIfAuthenticated
         }
 
         if (auth('admin')->check()) {
-            return redirect(RouteServiceProvider::ADMIN);
+            return redirect(RouteServiceProvider::ADMIN)->with('success','welcome Admin');
         }
 
         if (auth('doctor')->check()) {
-            return redirect(RouteServiceProvider::DOCTOR);
+            return redirect(RouteServiceProvider::DOCTOR)->with('success','welcome doctor');
         }
 
         if (auth('ray_employee')->check()) {
-            return redirect(RouteServiceProvider::RayEmployee);
+            return redirect(RouteServiceProvider::RayEmployee)->with('success','welcome RayEmployee');
         }
 
         // if (auth('laboratories_employee')->check()) {

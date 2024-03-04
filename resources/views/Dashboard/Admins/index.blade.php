@@ -9,6 +9,19 @@
 <link href="{{URL::asset('Dashboard/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
+@if (session('success'))
+ <script>
+        window.onload = function() {
+
+            Swal.fire({
+                icon: "success",
+                title: "Loging",
+                text: "{{ session('success')}}",
+                timer:2000,
+            });
+        };
+    </script>
+@endif
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">

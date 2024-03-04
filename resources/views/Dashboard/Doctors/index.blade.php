@@ -62,7 +62,7 @@
                                                 class="delete_select"></td>
                                         <td>
                                             @if ($doctor->image)
-                                                <img src="{{ asset('Dashboard/img/' . $doctor->image->fileName) }}"
+                                                <img src="{{ asset('Dashboard/img/'.$doctor->image->fileName ) }}"
                                                     height="50px" width="50px" alt="">
                                             @else
                                                 <img src="{{ asset('Dashboard/img/doctor_default.png') }}" height="50px"

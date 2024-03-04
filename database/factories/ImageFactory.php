@@ -21,7 +21,6 @@ class ImageFactory extends Factory
             'fileName'=>$this->faker->randomElement(['Doctors/d1.jpg', 'Doctors/d2.jpg', 'Doctors/d3.jpg']),
             'imageable_id' => Doctor::inRandomOrder()->pluck('id')->unique()->first(),
             'imageable_type'=>'App\Models\Doctor',
-
         ];
     }
 }
