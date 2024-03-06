@@ -11,7 +11,14 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface{
     /**
      */
     function index() {
-        $invoices = Ray::all();
+        $invoices = Ray::where('case',0)->get();
+        return view('Dashboard.Rays_Dashboard.invoices.index', get_defined_vars());
+    }
+    /**
+     */
+    function completedRayInvoices()
+    {
+         $invoices = Ray::where('case',1)->get();
         return view('Dashboard.Rays_Dashboard.invoices.index', get_defined_vars());
     }
     /**
@@ -52,4 +59,5 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface{
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
 }

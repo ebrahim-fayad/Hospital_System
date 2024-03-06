@@ -9,8 +9,13 @@ use Illuminate\Http\Request;
 class RayInvoicesController extends Controller
 {
     private $Rays;
-    public function __construct(RayInvoicesRepositoryInterface $Rays) {
+    public function __construct(RayInvoicesRepositoryInterface $Rays)
+    {
         $this->Rays = $Rays;
+    }
+    public function completedRayInvoices()
+    {
+        return $this->Rays->completedRayInvoices();
     }
     /**
      * Display a listing of the resource.
@@ -57,7 +62,7 @@ class RayInvoicesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         return $this->Rays->update($request,$id);
+        return $this->Rays->update($request, $id);
     }
 
     /**

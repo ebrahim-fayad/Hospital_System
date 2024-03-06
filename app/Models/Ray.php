@@ -23,4 +23,8 @@ class Ray extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

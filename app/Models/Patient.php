@@ -21,4 +21,9 @@ class Patient extends Model
     {
         return $this->hasMany(PatientAccount::class, 'patient_id');
     }
+
+    public function Rays()
+    {
+        return $this->hasMany(Ray::class);
+    }
 }

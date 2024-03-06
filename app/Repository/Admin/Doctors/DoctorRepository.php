@@ -60,7 +60,7 @@ class DoctorRepository implements DoctorRepositoryInterface
             if ($request->fileName) {
                 $images = Image::where('imageable_id', $doctor->id)->get();
                 // foreach ($images as $image) {
-                    $this->deleteImage('upload_image', $doctor->id);
+                    $this->deleteImage('upload_image', $doctor->id,'App\Models\Doctor');
                 // }
             }
 
@@ -76,7 +76,7 @@ class DoctorRepository implements DoctorRepositoryInterface
                 if ($doctor->image) {
                     // $images = Image::where('imageable_id', $doctor->id)->get();
                     // foreach ($images as $image) {
-                        $this->deleteImage('upload_image', $doctor->id);
+                        $this->deleteImage('upload_image', $doctor->id,'App\Models\Doctor');
                         // }
                 } //end of doctor image
                 $doctor->delete();
@@ -109,7 +109,7 @@ class DoctorRepository implements DoctorRepositoryInterface
                 ]);
             $doctor->doctorAppointments()->sync($request->appointments);
             if ($request->photo) {
-                $this->deleteImage('upload_image', $doctor->id);
+                $this->deleteImage('upload_image', $doctor->id, 'App\Models\Doctor');
                     $this->uploadImage($request, 'upload_image', 'photo', 'Doctors', $doctor->id, 'App\Models\Doctor');
             }
 

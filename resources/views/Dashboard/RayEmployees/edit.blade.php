@@ -25,7 +25,7 @@
                                 src="{{ asset('Dashboard/img/' . $ray_employee->image->fileName) }}" height="100%"
                                 width="100%" alt="">
                         @else
-                            <img style="border-radius:50%" src="{{ Url::asset('Dashboard/img/doctor_default.png') }}"
+                            <img style="border-radius:50%" src="{{ asset('Dashboard/img/ray_employee.jpg') }}"
                                 height="50px" width="50px" alt="">
                         @endif
                     </div>

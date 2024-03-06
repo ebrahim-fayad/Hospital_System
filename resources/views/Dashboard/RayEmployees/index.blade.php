@@ -51,7 +51,7 @@
                                                 <img src="{{ asset('Dashboard/img/' . $ray_employee->image->fileName) }}"
                                                     height="50px" width="50px" alt="">
                                             @else
-                                                <img src="{{ asset('Dashboard/img/doctor_default.png') }}" height="50px"
+                                                <img src="{{ asset('Dashboard/img/ray_employee.jpg') }}" height="50px"
                                                     width="50px" alt="">
                                             @endif
                                         </td>

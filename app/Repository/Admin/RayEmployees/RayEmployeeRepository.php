@@ -59,7 +59,7 @@ class RayEmployeeRepository  implements RayEmployeeRepositoryInterface
             }
             $rayEmployee->update($input);
             if ($request->photo) {
-                $this->deleteImage('upload_image', $rayEmployee->id);
+                $this->deleteImage('upload_image', $rayEmployee->id, 'App\Models\RayEmployee');
                 $this->uploadImage($request, 'upload_image', 'photo', 'RayEmployees', $rayEmployee->id, 'App\Models\RayEmployee');
             }
             DB::commit();
@@ -75,7 +75,7 @@ class RayEmployeeRepository  implements RayEmployeeRepositoryInterface
      * @param mixed $id
      */
     function destroy($id) {
-        $this->deleteImage('upload_image', $id);
+        $this->deleteImage('upload_image', $id, 'App\Models\RayEmployee');
         RayEmployee::destroy($id);
         session()->flash('delete');
         return redirect()->back();
