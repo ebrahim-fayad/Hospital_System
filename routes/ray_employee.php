@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RayEmployeeController;
+use App\Http\Controllers\Rays\RayInvoicesController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -22,9 +23,11 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-        Route::get('ray_employee/dashboard', [RayEmployeeController::class, 'index'])->middleware('auth:ray_employee')->name('ray_employee');
-
-
+        Route::middleware(['auth:ray_employee'])->group(function () {
+            Route::get('ray_employee/dashboard', [RayEmployeeController::class, 'index'])->name('ray_employee.dashboard');
+            Route::resource('Rays_Invoices', RayInvoicesController::class);
+        });//end middleware of  auth:ray_employee
+       
 
 
 

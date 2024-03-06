@@ -12,7 +12,7 @@ class RayEmployeeController extends Controller
 {
     public function index()
     {
-        return view('Dashboard.RayEmployees.Auth.index');
+        return view('Dashboard.Rays_Dashboard.Auth.index');
     }
     public function store(RayEmployeeRequest $request)
     {
