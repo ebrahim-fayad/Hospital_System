@@ -10,42 +10,25 @@
 <!-- Maps css -->
 <link href="{{URL::asset('Dashboard/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 @endsection
-@section('page-header')
 @if (session('success'))
- <script>
-        window.onload = function() {
+<script>
+       window.onload = function() {
 
-            Swal.fire({
-                icon: "success",
-                title: "Loging",
-                text: "{{ session('success')}}",
-                timer:2000,
-            });
-        };
-    </script>
+           Swal.fire({
+               icon: "success",
+               title: "Loging",
+               text: "{{ session('success')}}",
+               timer:2000,
+           });
+       };
+   </script>
 @endif
+@section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back {{ Auth::user()->name }}</h2>
-						  <p class="mg-b-0">Sales monitoring dashboard template.</p>
-						</div>
-					</div>
-					<div class="main-dashboard-header-right">
-						<div>
-							<label class="tx-13">Customer Ratings</label>
-							<div class="main-star">
-								<i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star"></i> <span>(14,873)</span>
-							</div>
-						</div>
-						<div>
-							<label class="tx-13">Online Sales</label>
-							<h5>563,275</h5>
-						</div>
-						<div>
-							<label class="tx-13">Offline Sales</label>
-							<h5>783,675</h5>
+						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم الدكتور</h2>
 						</div>
 					</div>
 				</div>
@@ -56,20 +39,15 @@
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-primary-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 ">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY ORDERS</h6>
+									<h6 class="mb-3 tx-12 text-white">عدد الفواتير</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$5,74.12</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{App\Models\Invoice::where('doctor_id',auth()->user()->id)->count()}}</h4>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> +427</span>
-										</span>
 									</div>
 								</div>
 							</div>
@@ -78,20 +56,17 @@
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-danger-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 ">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY EARNINGS</h6>
+									<h6 class="mb-3 tx-12 text-white">عدد الفواتير تحت الاجراء</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$1,230.17</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                                {{App\Models\Invoice::where('doctor_id',auth()->user()->id)->where('invoice_status',1)->count()}}
+                                            </h4>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -23.09%</span>
-										</span>
 									</div>
 								</div>
 							</div>
@@ -100,20 +75,17 @@
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-success-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 ">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TOTAL EARNINGS</h6>
+									<h6 class="mb-3 tx-12 text-white">عدد الفواتير المكتملة</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                                {{App\Models\Invoice::where('doctor_id',auth()->user()->id)->where('invoice_status',3)->count()}}
+                                            </h4>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> 52.09%</span>
-										</span>
 									</div>
 								</div>
 							</div>
@@ -122,20 +94,17 @@
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-warning-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 ">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">PRODUCT SOLD</h6>
+									<h6 class="mb-3 tx-12 text-white">عدد فواتير المراجعات</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$4,820.50</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                                {{App\Models\Invoice::where('doctor_id',auth()->user()->id)->where('invoice_status',2)->count()}}
+                                            </h4>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -152.3</span>
-										</span>
 									</div>
 								</div>
 							</div>
@@ -285,7 +254,7 @@
 						<div class="card">
 							<div class="card-header pb-1">
 								<h3 class="card-title mb-2">Sales Activity</h3>
-								<p class="tx-12 mb-0 text-muted">Sales activities are the tactics that salespeople use to achieve their goals and objective</p>
+								<p class="tx-12 mb-0 text-muted">Sales activities are the tactics that salespeople uses to achieve their goals and objective</p>
 							</div>
 							<div class="product-timeline card-body pt-2 mt-1">
 								<ul class="timeline-1 mb-0">
@@ -315,9 +284,9 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<h3 class="card-title mb-2">Recent Orders</h3>
-								<p class="tx-12 mb-0 text-muted">An order is an investor's instructions to a broker or brokerage firm to purchase or sell</p>
+								<p class="tx-12 mb-0 text-muted">An order is an investor is instructions to a broker or brokerage firm to purchase or sell</p>
 							</div>
-							<div class="card-body sales-info ot-0  pb-0">
+							<div class="card-body sales-info ot-0 pt-0 pb-0">
 								<div id="chart" class="ht-150"></div>
 								<div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
 									<div class="col-md-6 col">
