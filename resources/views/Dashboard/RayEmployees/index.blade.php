@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-   قائمة الموظفين
+  الاشعة-- قائمة الموظفين
 @stop
 @section('css')
 @endsection
@@ -93,6 +93,15 @@
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
+<script>
+    var loadFiled = function(event) {
+        var outputed = document.getElementById('outputed');
+        outputed.src = URL.createObjectURL(event.target.files[0]);
+        outputed.onload = function() {
+            URL.revokeObjectURL(outputed.src) // free memory
         }
     };
 </script>

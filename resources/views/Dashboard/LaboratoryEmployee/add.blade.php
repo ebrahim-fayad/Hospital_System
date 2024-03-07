@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">اضافة موظف اشعة جديد</h5>
+                <h5 class="modal-title" id="exampleModalLabel">اضافة موظف مختبر جديد</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('ray_employee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('Laboratory_Employee.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <label for="exampleInputPassword1">الاسم</label>
@@ -25,15 +25,18 @@
                     </div>
                     <div class="card p-3 ">
 
-                        <div class="row row-xs align-items-center justify-center mg-b-20 mt-3">
+                          <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-1">
                                 <label for="exampleInputEmail1">
                                     {{ trans('Doctors.doctor_photo') }}</label>
-                                </div>
-                                <div class="col-md-11 mg-t-5 mg-md-t-0">
+                            </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
                                 <input type="file" accept="image/*" name="photo" onchange="loadFiled(event)">
                                 <img style="border-radius:50%" width="150px" height="150px" id="outputed" />
                             </div>
+                        </div>
+
+
                             </div>
                     </div>
                 </div>

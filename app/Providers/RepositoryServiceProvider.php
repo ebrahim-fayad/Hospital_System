@@ -7,6 +7,7 @@ use App\Interfaces\Admin\Doctors\DoctorRepositoryInterface;
 use App\Interfaces\Admin\Finances\PaymentRepositoryInterface;
 use App\Interfaces\Admin\Finances\ReceiptRepositoryInterface;
 use App\Interfaces\Admin\Insurances\InsuranceRepositoryInterface;
+use App\Interfaces\Admin\LaboratoryEmployee\LaboratoryEmployeeRepositoryInterface;
 use App\Interfaces\Admin\Patients\PatientRepositoryInterface;
 use App\Interfaces\Admin\RayEmployees\RayEmployeeRepositoryInterface;
 use App\Interfaces\Admin\Sections\SectionRepositoryInterface;
@@ -15,12 +16,14 @@ use App\Interfaces\Doctor\Diagnostics\DiagnosticRepositoryInterface;
 use App\Interfaces\Doctor\Invoices\InvoiceRepositoryInterface;
 use App\Interfaces\Doctor\Laboratories\LaboratoryRepositoryInterface;
 use App\Interfaces\Doctor\Rays\RayRepositoryInterface;
+
 use App\Interfaces\Rays\RayInvoicesRepositoryInterface;
 use App\Repository\Admin\Ambulances\AmbulanceRepository;
 use App\Repository\Admin\Doctors\DoctorRepository;
 use App\Repository\Admin\Finances\PaymentRepository;
 use App\Repository\Admin\Finances\ReceiptRepository;
 use App\Repository\Admin\Insurances\InsuranceRepository;
+use App\Repository\Admin\LaboratoryEmployee\LaboratoryEmployeeRepository;
 use App\Repository\Admin\Patients\PatientRepository;
 use App\Repository\Admin\RayEmployees\RayEmployeeRepository;
 use App\Repository\Admin\Sections\SectionRepository;
@@ -53,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(LaboratoryRepositoryInterface::class, LaboratoryRepository::class);
         $this->app->bind(RayEmployeeRepositoryInterface::class, RayEmployeeRepository::class);
         $this->app->bind(RayInvoicesRepositoryInterface::class, RayInvoicesRepository::class);
+        $this->app->bind(LaboratoryEmployeeRepositoryInterface::class, LaboratoryEmployeeRepository::class);
     }
 
     /**

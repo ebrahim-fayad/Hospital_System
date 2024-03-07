@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('laboratories', function (Blueprint $table) {
             $table->id();
             $table->longText('description');
-            $table->foreignId('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-            $table->foreignId('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->foreignId('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreignId('invoice_id')->references('id')->on('invoices')->cascadeOnDelete();
+            $table->foreignId('patient_id')->references('id')->on('patients')->cascadeOnDelete();
+            $table->foreignId('doctor_id')->references('id')->on('doctors')->cascadeOnDelete();
+            $table->foreignId('laboratory_employee_id')->nullable()->references('id')->on('laboratory_employees')->cascadeOnDelete();
             $table->timestamps();
         });
     }
