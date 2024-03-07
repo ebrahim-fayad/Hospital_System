@@ -46,7 +46,7 @@ class RayInvoicesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $this->Rays->show($id);
     }
 
     /**

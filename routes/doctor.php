@@ -55,8 +55,10 @@ Route::group(
 
             //############################# end rays Laboratories ######################################
 
-
-        });
+            Route::get('/404', function () {
+                return view('Dashboard.404');
+            })->name('404');
+        });//end route localization
 
         require __DIR__ . '/auth.php';
         Livewire::setUpdateRoute(function ($handle) {

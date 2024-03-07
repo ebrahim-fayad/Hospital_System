@@ -48,7 +48,7 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $this->Invoice->show($id);
     }
 
     /**
@@ -56,7 +56,7 @@ class InvoiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return $this->Invoice->edit($id);
     }
 
     /**

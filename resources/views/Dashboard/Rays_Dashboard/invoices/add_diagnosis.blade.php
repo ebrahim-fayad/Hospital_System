@@ -29,6 +29,9 @@
                             <label for="exampleFormControlTextarea1">التشخيص</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="description_employee" rows="3"></textarea>
                         </div>
+                        @error('description_employee')
+                         @include('Dashboard.sweet_alert',['error_name'=>'description_employee','message'=>$message])
+                        @enderror
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">المرفقات</label>
                             <input type="file" name="photos[]" accept="image/*" multiple>

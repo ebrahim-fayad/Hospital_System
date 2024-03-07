@@ -19,7 +19,7 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface{
     function completedRayInvoices()
     {
          $invoices = Ray::where('case',1)->get();
-        return view('Dashboard.Rays_Dashboard.invoices.index', get_defined_vars());
+        return view('Dashboard.Rays_Dashboard.invoices.completed_invoices', get_defined_vars());
     }
     /**
      *
@@ -37,6 +37,9 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface{
      */
     function update($request, $id) {
         DB::beginTransaction();
+        $request->validate([
+            'description_employee' => 'required',
+        ]);
         try {
             $Ray = Ray::findOrFail($id);
             $Ray->update([
@@ -58,6 +61,19 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface{
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    /**
+     *
+     * @param mixed $id
+     */
+    function show($id) {
+        $rays = Ray::findOrFail($id);
+        if ($rays->employee_id != auth()->user()->id) {
+            //abort(404);
+            return redirect()->route('404');
+        }
+        return view('Dashboard.Rays_Dashboard.invoices.patient_details', compact('rays'));
     }
 
 }
