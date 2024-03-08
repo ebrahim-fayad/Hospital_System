@@ -286,7 +286,7 @@
                 </div>
                 <div class="dropdown main-profile-menu nav nav-item nav-link">
                     <a class="profile-user d-flex" href="">
-                        @if (auth('doctor')->check() || auth('ray_employee')->check())
+                        @if (!auth('admin')->check())
                             @if (auth()->user()->image)
                                 <img src="{{ asset('Dashboard/img/' . auth()->user()->image->fileName) }}"
                                     alt="">
@@ -301,7 +301,7 @@
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    @if (auth('doctor')->check() || auth('ray_employee')->check())
+                                    @if (!auth('admin')->check())
                                         @if (auth()->user()->image)
                                             <img src="{{ asset('Dashboard/img/' . auth()->user()->image->fileName) }}"
                                                 alt="">
@@ -330,6 +330,8 @@
                                 <form method="POST" action="{{ route('logout.admin') }}">
                                 @elseif (auth('ray_employee')->check())
                                     <form method="POST" action="{{ route('ray_employee.logout') }}">
+                                @elseif (auth('laboratory_employee')->check())
+                                    <form method="POST" action="{{ route('laboratory_employee.logout') }}">
                                     @else
                                         <form method="POST" action="{{ route('doctor.logout') }}">
                         @endif

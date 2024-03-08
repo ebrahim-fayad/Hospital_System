@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-موظفي الاشعة
+    موظفي المختبر
 @endsection
 @section('css')
 <!--  Owl-carousel css-->
@@ -26,7 +26,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم موظفي الاشعة</h2><br>
+						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم موظفي المختبر</h2><br>
 						  <p class="mg-b-0">مرحبا بعودتك مرة اخري  {{auth()->user()->name}}</p>
 						</div>
 					</div>

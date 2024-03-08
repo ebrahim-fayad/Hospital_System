@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'ray_employees',
         ],
+        'laboratory_employee' => [
+            'driver' => 'session',
+            'provider' => 'laboratory_employees',
+        ],
     ],
 
     /*
@@ -87,6 +91,10 @@ return [
         'ray_employees' => [
             'driver' => 'eloquent',
             'model' => App\Models\RayEmployee::class,
+        ],
+        'laboratory_employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\LaboratoryEmployee::class,
         ],
 
         // 'users' => [
@@ -135,6 +143,12 @@ return [
         ],
         'ray_employees' => [
             'provider' => 'ray_employees',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'laboratory_employees' => [
+            'provider' => 'laboratory_employees',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
