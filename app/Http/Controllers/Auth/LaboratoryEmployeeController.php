@@ -15,7 +15,7 @@ class LaboratoryEmployeeController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.LaboratoryEmployeesAuth.index');
+        return view('Dashboard.LaboratoryEmployeesDashboard.index');
     }
 
     /**

@@ -40,12 +40,6 @@ trait UploadTrait
             'imageable_id' => $imageable_id,
             'imageable_type' => $imageable_type,
         ]);
-        // $Image = new Image();
-        // $Image->filename = $varForeach->getClientOriginalName();
-        // $Image->imageable_id = $imageable_id;
-        // $Image->imageable_type = $imageable_type;
-        // $Image->save();
-        // return $varForeach->storeAs($folderName, $varForeach->getClientOriginalName(), $disk);
     }
     public function deleteImage($disk, $id,$type)
     {

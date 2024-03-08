@@ -9,6 +9,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Gender;
 use App\Models\Image;
+use App\Models\LaboratoryEmployee;
 use App\Models\RayEmployee;
 use App\Models\Section;
 use App\Models\User;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Section::truncate();
         Doctor::truncate();
         RayEmployee::truncate();
+        LaboratoryEmployee::truncate();
         Appointment::truncate();
         Image::truncate();
         Gender::truncate();
@@ -43,6 +45,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PatientSeeder::class,
             RayEmployeeSeeder::class,
+            LaboratoryEmployeeSeder::class,
             ImageSeeder::class,
             ]);
         // \App\Models\User::factory()->create([

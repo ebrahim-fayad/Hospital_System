@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('patient_id')->references('id')->on('patients')->cascadeOnDelete();
             $table->foreignId('doctor_id')->references('id')->on('doctors')->cascadeOnDelete();
             $table->foreignId('laboratory_employee_id')->nullable()->references('id')->on('laboratory_employees')->cascadeOnDelete();
+            $table->longText('description_employee')->nullable();
+            $table->tinyInteger('case')->default(0);
             $table->timestamps();
         });
     }
