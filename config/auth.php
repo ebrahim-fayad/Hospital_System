@@ -56,6 +56,10 @@ return [
             'driver' => 'session',
             'provider' => 'laboratory_employees',
         ],
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
     ],
 
     /*
@@ -95,6 +99,10 @@ return [
         'laboratory_employees' => [
             'driver' => 'eloquent',
             'model' => App\Models\LaboratoryEmployee::class,
+        ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
         ],
 
         // 'users' => [
@@ -149,6 +157,12 @@ return [
         ],
         'laboratory_employees' => [
             'provider' => 'laboratory_employees',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'patients' => [
+            'provider' => 'patients',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

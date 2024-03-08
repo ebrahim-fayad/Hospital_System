@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Patient extends Model
+class Patient extends Authenticatable
 {
     use HasFactory,Translatable;
     public $translatedAttributes = ['name', 'Address'];
-    public $fillable = ['email', 'Password', 'Date_Birth', 'Phone', 'gender_id', 'Blood_Group','name', 'Address'];
+    public $fillable = ['email', 'password', 'Date_Birth', 'Phone', 'gender_id', 'Blood_Group','name', 'Address'];
 
     public function gender()
     {
@@ -26,4 +26,18 @@ class Patient extends Model
     {
         return $this->hasMany(Ray::class);
     }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }

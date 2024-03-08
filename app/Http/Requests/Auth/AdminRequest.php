@@ -45,7 +45,7 @@ class AdminRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => trans('Dashboard/auth.failed'),
             ]);
         }
 

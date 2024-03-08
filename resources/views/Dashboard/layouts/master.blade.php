@@ -24,6 +24,8 @@
         @include('Dashboard.layouts.main-sidebar.admin-sidebar')
         @elseif (Auth::guard('laboratory_employee')->check())
         @include('Dashboard.layouts.main-sidebar.main-sidebar-laboratory_employee')
+        @elseif (Auth::guard('patient')->check())
+        @include('Dashboard.layouts.main-sidebar.patient-sidebar-main')
         @else
         @include('Dashboard.layouts.main-sidebar.main-sidebar-ray_employee')
     @endif

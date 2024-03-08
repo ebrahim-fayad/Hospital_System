@@ -49,6 +49,15 @@
                                                 class="sign-favicon ht-40" alt="logo"></a>
                                         <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1>
                                     </div>
+                                    @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>{{ trans('login_trans.Welcome') }}</h2>
@@ -74,7 +83,7 @@
 
                                             <div class="panel" id="user">
                                                 <h5 class="text-primary">{{ trans('login_trans.user') }}</h5>
-                                                <form action="{{ route('user.login') }}" method="post">
+                                                <form action="{{ route('patients.login') }}" method="post">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label>Email</label>

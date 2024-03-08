@@ -37,9 +37,9 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::LaboratoryEmployee)->with('success','welcome RayEmployee');
         }
 
-        // if (auth('patient')->check()) {
-        //     return redirect(RouteServiceProvider::PATIENT);
-        // }
+        if (auth('patient')->check()) {
+            return redirect(RouteServiceProvider::PATIENT);
+        }
 
         return $next($request);
     }
