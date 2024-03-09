@@ -80,3 +80,4 @@ Route::post('logout/admin', [AdminController::class, 'destroy'])->name('logout.a
 Route::post('logout/doctor', [DoctorController::class, 'destroy'])->name('doctor.logout');
 Route::post('logout/ray_employee', [RayEmployeeController::class, 'destroy'])->name('ray_employee.logout');
 Route::post('logout/laboratory_employee', [LaboratoryEmployeeController::class, 'destroy'])->name('laboratory_employee.logout');
+Route::post('logout/patient', [PatientAuthController::class, 'destroy'])->name('patient.logout');

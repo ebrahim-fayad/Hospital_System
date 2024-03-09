@@ -332,6 +332,8 @@
                                     <form method="POST" action="{{ route('ray_employee.logout') }}">
                                 @elseif (auth('laboratory_employee')->check())
                                     <form method="POST" action="{{ route('laboratory_employee.logout') }}">
+                                @elseif (auth('patient')->check())
+                                    <form method="POST" action="{{ route('patient.logout') }}">
                                     @else
                                         <form method="POST" action="{{ route('doctor.logout') }}">
                         @endif

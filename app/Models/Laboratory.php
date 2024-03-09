@@ -18,6 +18,10 @@ class Laboratory extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+    public function employee()
+    {
+        return $this->belongsTo(LaboratoryEmployee::class, 'laboratory_employee_id')->withDefault(['name'=>'No Employee']);
+    }
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');

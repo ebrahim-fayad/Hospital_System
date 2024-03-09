@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PatientAuthController;
+use App\Http\Controllers\Patients\PatientDashboardController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -24,7 +25,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     function () {
         Route::middleware(['auth:patient'])->group(function () {
             Route::get('patient/dashboard',[PatientAuthController::class,'index'])->name('patient.dashboard');
-
+            //############################# patients route ##########################################
+            Route::get('invoices', [PatientDashboardController::class, 'invoices'])->name('invoices.patient');
+            Route::get('laboratories', [PatientDashboardController::class, 'laboratories'])->name('laboratories.patient');
+            Route::get('view_laboratories/{id}', [PatientDashboardController::class, 'viewLaboratories'])->name('laboratories.view');
+            Route::get('rays', [PatientDashboardController::class, 'rays'])->name('rays.patient');
+            Route::get('view_rays/{id}', [PatientDashboardController::class, 'viewRays'])->name('rays.view');
+            Route::get('payments', [PatientDashboardController::class, 'payments'])->name('payments.patient');
+        //############################# end patients route ######################################
         });
 
 
