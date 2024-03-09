@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\MyEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AdminRequest;
 use App\Providers\RouteServiceProvider;
@@ -15,6 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        event(new MyEvent('hello world',auth()->user()->name));
         return view('Dashboard.Admins.index');
     }
 

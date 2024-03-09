@@ -38,7 +38,6 @@ Route::group(
             return view('Dashboard.Users.index');
         })->middleware(['auth:web'])->name('user.dashboard');
 
-        Route::get('ray_employee/dashboard', [RayEmployeeController::class, 'index'])->middleware('auth:ray_employee')->name('ray_employee');
 
         Route::middleware('auth:admin')->group(function () {
             Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
