@@ -1,5 +1,5 @@
 <!-- Back-to-top -->
-<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 <!-- JQuery min js -->
 <script src="{{ URL::asset('Dashboard/plugins/jquery/jquery.min.js') }}"></script>
@@ -70,16 +70,4 @@
 <script src="{{ URL::asset('Dashboard/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
 <!-- Internal form-elements js -->
 <script src="{{ URL::asset('Dashboard/js/form-elements.js') }}"></script>
-<script src="{{ asset('Dashboard/js/pusher.min.js') }}"></script>
 
- <script>
-                 Pusher.logToConsole = true;
-                var pusher = new Pusher('e43690297d866207bda8', {
-                    cluster: 'mt1'
-                });
-                 var channel = pusher.subscribe('my-channel');
-    channel.bind('App\\Events\\MyEvent', function(data) {
-      alert(JSON.stringify(data));
-    });
-            </script>
-{{--  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>  --}}

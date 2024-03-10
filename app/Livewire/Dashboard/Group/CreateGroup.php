@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Group;
 
+use App\Events\MyEvent;
 use App\Models\Group;
 use App\Models\Service;
 use Livewire\Attributes\Validate;
@@ -189,11 +190,17 @@ class CreateGroup extends Component
                             $existingService->pivot->save();
                         }
                     }
+                     $data = [
+                        // 'invoice_id' => $InvoiceGroup->id,
+                        'patient_id' => $this->name,
+                    ];
+                    event(new MyEvent($data));
                     $this->reset('GroupsItems', 'name', 'notes');
                     $this->discount_value = 0;
                     $this->showTable = true;
                     $this->ServiceSaved = true;
                     // session()->flash('saved', 'saved');
+
                 } else {
                     session()->flash('taxesError', 'error');
                 }

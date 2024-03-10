@@ -96,6 +96,7 @@ class SingleInvoiceCreate extends Component
                     'credit' => 0.00
                 ]);
             }
+
             DB::commit();
             $this->dispatch('create');
             session()->flash('add');

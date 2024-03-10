@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Patient;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -17,13 +18,14 @@ class MyEvent implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public $message;
-    public $userName;
+    // public $invoice_id;
+    public $patient_id;
 
-    public function __construct($message, $userName)
+    public function __construct($data)
     {
-        $this->message = $message;
-        $this->userName = $userName;
+        // $patient=Patient::findOrFail( $data['patient_id']);
+        // $this->invoice_id = $data['invoice_id'];
+        $this->patient_id = $data['patient_id'];
     }
     /**
      * Get the channels the event should broadcast on.

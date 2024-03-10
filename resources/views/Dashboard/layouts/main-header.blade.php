@@ -183,7 +183,7 @@
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                         <span class=" pulse"></span></a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-notifications">
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Notifications
@@ -191,8 +191,8 @@
                                 <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All
                                     Read</span>
                             </div>
-                            <p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have 4 unread
-                                Notifications</p>
+                            <p data-count="0"
+                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">0</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
                             <a class="d-flex p-3 border-bottom" href="#">
@@ -207,66 +207,7 @@
                                     <i class="las la-angle-left text-left text-muted"></i>
                                 </div>
                             </a>
-                            <a class="d-flex p-3" href="#">
-                                <div class="notifyimg bg-purple">
-                                    <i class="la la-gem text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">Updates Available</h5>
-                                    <div class="notification-subtext">2 days ago</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-success">
-                                    <i class="la la-shopping-basket text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">New Order Received</h5>
-                                    <div class="notification-subtext">1 hour ago</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-warning">
-                                    <i class="la la-envelope-open text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">New review received</h5>
-                                    <div class="notification-subtext">1 day ago</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-danger">
-                                    <i class="la la-user-check text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">22 verified registrations</h5>
-                                    <div class="notification-subtext">2 hour ago</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-primary">
-                                    <i class="la la-check-circle text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h5 class="notification-label mb-1">Project has been approved</h5>
-                                    <div class="notification-subtext">4 hour ago</div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
+
                         </div>
                         <div class="dropdown-footer">
                             <a href="">VIEW ALL</a>
@@ -327,12 +268,12 @@
                                 <form method="POST" action="{{ route('logout.admin') }}">
                                 @elseif (auth('ray_employee')->check())
                                     <form method="POST" action="{{ route('ray_employee.logout') }}">
-                                @elseif (auth('laboratory_employee')->check())
-                                    <form method="POST" action="{{ route('laboratory_employee.logout') }}">
-                                @elseif (auth('patient')->check())
-                                    <form method="POST" action="{{ route('patient.logout') }}">
-                                    @else
-                                        <form method="POST" action="{{ route('doctor.logout') }}">
+                                    @elseif (auth('laboratory_employee')->check())
+                                        <form method="POST" action="{{ route('laboratory_employee.logout') }}">
+                                        @elseif (auth('patient')->check())
+                                            <form method="POST" action="{{ route('patient.logout') }}">
+                                            @else
+                                                <form method="POST" action="{{ route('doctor.logout') }}">
                         @endif
                         @csrf
                         <a class="dropdown-item" href="#"
@@ -359,3 +300,29 @@
     </div>
 </div>
 <!-- /main-header -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+{{--  <script src="{{ asset('Dashboard/js/jquery.min.js') }}"></script>  --}}
+ <script src="{{ asset('Dashboard/js/pusher.min.js') }}"></script>
+{{-- <script src="//js.pusher.com/3.1/pusher.min.js"></script>  --}}
+
+<script>
+     var notificationsWrapper   = $('.dropdown-notifications');
+    var notificationsCountElem = notificationsWrapper.find('p[data-count]');
+    var notificationsCount  = parseInt(notificationsCountElem.data('count'));
+    var notifications = notificationsWrapper.find('h5.notification-label');
+
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('e43690297d866207bda8', {
+        cluster: 'mt1'
+    });
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('App\\Events\\MyEvent', function(data) {
+        var existingNotifications = notifications.html();
+        var newNotificationHtml = `<h5 class="notification-label mb-1">`+data.patient_id+`</h5>`;
+        notifications.html(newNotificationHtml + existingNotifications);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+    }); notificationsWrapper.show();
+
+</script>
