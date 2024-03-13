@@ -315,10 +315,10 @@
     </div>
 </div>
 <!-- /main-header -->
-{{--  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>  --}}
+<script src="{{ asset('build/assets/app-lrv-1RVT.js') }}"></script>
 <script src="{{ asset('Dashboard/js/pusher.min.js') }}"></script>
 <script src="{{ asset('Dashboard/js/jquery.min.js') }}"></script>
-{{--  <script src="//js.pusher.com/3.1/pusher.min.js"></script>  --}}
+
 
 <script>
      var notificationsWrapper   = $('.dropdown-notifications');
@@ -328,15 +328,9 @@
     var notifications = notificationsWrapper.find('h4.notification-label');
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
-
-    Pusher.logToConsole = true;
-    var pusher = new Pusher('e43690297d866207bda8', {
-        cluster: 'mt1'
-    });
-    var channel = pusher.subscribe('create-invoice');
-    channel.bind('App\\Events\\CreateInvoice', function(data) {
-            var newNotificationHtml = `
-       <h4 class="notification-label mb-1">`+data.message+data.invoice_name+`</h4>
+     Echo.private('create-invoice.{{ auth()->user()->id }}').listen('.create-invoice', (data) => {
+        var newNotificationHtml = `
+       <h4 class="notification-label mb-1">`+data.message+data.patient+`</h4>
        <div class="notification-subtext">`+data.created_at+`</div>`;
         new_message.show();
         notifications.html(newNotificationHtml);

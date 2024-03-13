@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Invoices\SingleInvoice;
 
+use App\Events\CreateInvoice;
 use App\Models\Doctor;
 use App\Models\FundAccount;
 use App\Models\Invoice;
@@ -9,8 +10,10 @@ use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\SectionTranslation;
 use App\Models\Service;
+use App\Notifications\CreateGroupInvoice;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class SingleInvoiceCreate extends Component
@@ -96,7 +99,15 @@ class SingleInvoiceCreate extends Component
                     'credit' => 0.00
                 ]);
             }
+            $data = [
+                'patient' => $this->patient_id,
+                'invoice_id' => $singleInvoice->id,
+                'doctor_id' => $this->doctor_id,
+            ];
 
+            event(new CreateInvoice($data));
+            $users = Doctor::findOrFail($this->doctor_id);
+            Notification::send($users, new CreateGroupInvoice($singleInvoice->name, $singleInvoice->id));
             DB::commit();
             $this->dispatch('create');
             session()->flash('add');
