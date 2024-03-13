@@ -10,7 +10,7 @@ use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\SectionTranslation;
 use App\Models\Service;
-use App\Notifications\CreateGroupInvoice;
+use App\Notifications\SingleInvoice;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -107,7 +107,7 @@ class SingleInvoiceCreate extends Component
 
             event(new CreateInvoice($data));
             $users = Doctor::findOrFail($this->doctor_id);
-            Notification::send($users, new CreateGroupInvoice($singleInvoice->name, $singleInvoice->id));
+            Notification::send($users, new SingleInvoice($data));
             DB::commit();
             $this->dispatch('create');
             session()->flash('add');

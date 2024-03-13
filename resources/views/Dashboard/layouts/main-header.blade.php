@@ -215,7 +215,7 @@
                                         <i class="la la-file-alt text-white"></i>
                                     </div>
                                     <div class="mr-3">
-                                        <h5 class="notification-label mb-1">{{ $notify->data['message'] }}  {{ $notify->data['serviceName'] }}</h5>
+                                        <h5 class="notification-label mb-1">{{ $notify->data['message'] }}  {{ $notify->data['patient'] }}</h5>
                                         <div class="notification-subtext">{{ $notify->created_at->diffForHumans() }}</div>
                                     </div>
                                     <div class="mr-auto">
