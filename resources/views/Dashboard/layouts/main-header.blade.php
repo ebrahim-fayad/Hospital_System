@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="dropdown nav-item main-header-notification">
-                    <a class="new nav-link" href="#">
+                    <a class="new nav-link" id ="test" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-bell">
@@ -183,7 +183,7 @@
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                         <span class=" pulse"></span></a>
-                    <div class="dropdown-menu dropdown-notifications">
+                    <div class="dropdown-menu dropdown-notifications" id='notified'>
                         <div class="menu-header-content bg-primary text-right">
                             <div class="d-flex">
                                 <h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Notifications
@@ -194,7 +194,7 @@
                             <p data-count="{{ count(Auth::user()->unreadNotifications ) }}"
                                 class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{ count(Auth::user()->unreadNotifications ) }}</p>
                         </div>
-                        <div class="main-notification-list Notification-scroll">
+                        <div class="main-notification-list Notification-scroll" >
                              <div class="new_message">
                             <a class="d-flex p-3 border-bottom" href="#">
                                 <div class="notifyimg bg-pink">
@@ -345,4 +345,9 @@
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     });
+</script>
+<script>
+    $('#test').on("click",function(){
+        $('#notified').toggle();
+    })
 </script>
