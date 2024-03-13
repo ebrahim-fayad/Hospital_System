@@ -191,23 +191,38 @@
                                 <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All
                                     Read</span>
                             </div>
-                            <p data-count="0"
-                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">0</p>
+                            <p data-count="{{ count(Auth::user()->unreadNotifications ) }}"
+                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{ count(Auth::user()->unreadNotifications ) }}</p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
+                             <div class="new_message">
                             <a class="d-flex p-3 border-bottom" href="#">
                                 <div class="notifyimg bg-pink">
                                     <i class="la la-file-alt text-white"></i>
                                 </div>
                                 <div class="mr-3">
-                                    <h5 class="notification-label mb-1">New files available</h5>
-                                    <div class="notification-subtext">10 hour ago</div>
+                                    <h4 class="notification-label mb-1"></h4>
+                                    <div class="notification-subtext"></div>
                                 </div>
                                 <div class="mr-auto">
                                     <i class="las la-angle-left text-left text-muted"></i>
                                 </div>
                             </a>
-
+                            </div>
+                            @foreach (Auth::user()->unreadNotifications as $notify)
+                                <a class="d-flex p-3 border-bottom" href="#">
+                                    <div class="notifyimg bg-pink">
+                                        <i class="la la-file-alt text-white"></i>
+                                    </div>
+                                    <div class="mr-3">
+                                        <h5 class="notification-label mb-1">{{ $notify->data['message'] }}  {{ $notify->data['serviceName'] }}</h5>
+                                        <div class="notification-subtext">{{ $notify->created_at->diffForHumans() }}</div>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <i class="las la-angle-left text-left text-muted"></i>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                         <div class="dropdown-footer">
                             <a href="">VIEW ALL</a>
@@ -300,29 +315,34 @@
     </div>
 </div>
 <!-- /main-header -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-{{--  <script src="{{ asset('Dashboard/js/jquery.min.js') }}"></script>  --}}
- <script src="{{ asset('Dashboard/js/pusher.min.js') }}"></script>
-{{-- <script src="//js.pusher.com/3.1/pusher.min.js"></script>  --}}
+{{--  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>  --}}
+<script src="{{ asset('Dashboard/js/pusher.min.js') }}"></script>
+<script src="{{ asset('Dashboard/js/jquery.min.js') }}"></script>
+{{--  <script src="//js.pusher.com/3.1/pusher.min.js"></script>  --}}
 
 <script>
      var notificationsWrapper   = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount  = parseInt(notificationsCountElem.data('count'));
-    var notifications = notificationsWrapper.find('h5.notification-label');
+
+    var notifications = notificationsWrapper.find('h4.notification-label');
+    var new_message = notificationsWrapper.find('.new_message');
+    new_message.hide();
 
     Pusher.logToConsole = true;
     var pusher = new Pusher('e43690297d866207bda8', {
         cluster: 'mt1'
     });
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('App\\Events\\MyEvent', function(data) {
-        var existingNotifications = notifications.html();
-        var newNotificationHtml = `<h5 class="notification-label mb-1">`+data.patient_id+`</h5>`;
-        notifications.html(newNotificationHtml + existingNotifications);
+    var channel = pusher.subscribe('create-invoice');
+    channel.bind('App\\Events\\CreateInvoice', function(data) {
+            var newNotificationHtml = `
+       <h4 class="notification-label mb-1">`+data.message+data.invoice_name+`</h4>
+       <div class="notification-subtext">`+data.created_at+`</div>`;
+        new_message.show();
+        notifications.html(newNotificationHtml);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
-    }); notificationsWrapper.show();
-
+        notificationsWrapper.show();
+    });
 </script>

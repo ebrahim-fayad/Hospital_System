@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Dashboard\Group;
 
-use App\Events\MyEvent;
+use App\Events\CreateInvoice;
+use App\Models\Doctor;
 use App\Models\Group;
 use App\Models\Service;
+use App\Notifications\CreateGroupInvoice;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -192,9 +195,12 @@ class CreateGroup extends Component
                     }
                      $data = [
                         // 'invoice_id' => $InvoiceGroup->id,
-                        'patient_id' => $this->name,
+                        'invoice_name' => $this->name,
+                        'invoice_id' => $Groups->id,
                     ];
-                    event(new MyEvent($data));
+                    $users = Doctor::all();
+                    Notification::send($users, new CreateGroupInvoice($this->name, $Groups->id));
+                    event(new CreateInvoice($data));
                     $this->reset('GroupsItems', 'name', 'notes');
                     $this->discount_value = 0;
                     $this->showTable = true;
