@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\PatientAuthController;
 use App\Http\Controllers\Patients\PatientDashboardController;
 use App\Livewire\Dashboard\Chats\CreateChat;
+use App\Livewire\Dashboard\Chats\Main;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -36,6 +37,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             //############################# end patients route ######################################
             //############################# Chat route ##########################################
             Route::get('list/doctors', CreateChat::class)->name('list.doctors');
+            Route::get('chat/doctors', Main::class)->name('chat.doctors');
 
         //############################# end Chat route ######################################
         });
