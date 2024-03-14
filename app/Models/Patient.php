@@ -5,10 +5,11 @@ namespace App\Models;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Patient extends Authenticatable
 {
-    use HasFactory,Translatable;
+    use HasFactory,Translatable,Notifiable;
     public $translatedAttributes = ['name', 'Address'];
     public $fillable = ['email', 'password', 'Date_Birth', 'Phone', 'gender_id', 'Blood_Group','name', 'Address'];
 
