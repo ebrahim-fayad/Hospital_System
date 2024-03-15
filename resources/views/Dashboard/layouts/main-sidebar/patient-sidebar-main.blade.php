@@ -54,6 +54,7 @@
                     <li><a class="slide-item" href="{{ route('laboratories.patient') }}">المختبر</a></li>
                     <li><a class="slide-item" href="{{ route('rays.patient') }}">الاشعة</a></li>
                 </ul>
+                 </li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -67,7 +68,7 @@
                     <li><a class="slide-item" href="{{ route('chat.doctors') }}">المحادثات الاخيرة</a></li>
                 </ul>
             </li>
-            </li>
+
         </ul>
     </div>
 </aside>

@@ -5,6 +5,8 @@ use App\Http\Controllers\Doctor\Diagnostics\DiagnosticController;
 use App\Http\Controllers\Doctor\Invoices\InvoiceController;
 use App\Http\Controllers\Doctor\Laboratories\LaboratoryController;
 use App\Http\Controllers\Doctor\Rays\RayController;
+use App\Livewire\Dashboard\Chats\CreateChat;
+use App\Livewire\Dashboard\Chats\Main;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -54,6 +56,11 @@ Route::group(
             Route::resource('Laboratories', LaboratoryController::class);
 
             //############################# end rays Laboratories ######################################
+            //############################# Chat route ##########################################
+            Route::get('list/patients', CreateChat::class)->name('list.patients');
+            Route::get('chat/patients', Main::class)->name('chat.patients');
+
+        //############################# end Chat route ######################################
 
             Route::get('/404', function () {
                 return view('Dashboard.404');
