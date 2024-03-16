@@ -14,4 +14,12 @@ class Message extends Model
     {
         return $this->belongsTo(Conversation::class, 'conversation_id');
     }
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }

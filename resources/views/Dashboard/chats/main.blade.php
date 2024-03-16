@@ -1,5 +1,8 @@
 <div>
 {{--  @extends('Dashboard.layouts.master')  --}}
+@section('title')
+    لوحة تحكم -- {{ auth()->user()->name }}
+@endsection
 @section('css')
 <style>
     #chat

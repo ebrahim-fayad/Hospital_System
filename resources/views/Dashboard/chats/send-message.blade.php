@@ -1,10 +1,10 @@
 <div style="margin-top: -4px">
     @if ($selected_conversation)
 
-    <form class="container">
+    <form class="container" wire:submit.prevent='createMessage'>
         <div class="main-chat-footer">
             <input class="form-control" wire:model='body' placeholder="Type your message here..." type="text">
-            <a class="main-msg-send" wire:click.prevent='createMessage'  href="#"><i class="far fa-paper-plane"></i></a>
+            <button type="submit" class="btn main-msg-send"   href="#"><i class="far fa-paper-plane"></i></لا>
         </div>
         @error('body')
         <div class="text-danger text-center p-3">{{ $message }}</ي>
