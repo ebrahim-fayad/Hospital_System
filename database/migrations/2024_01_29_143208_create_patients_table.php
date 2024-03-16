@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('Phone')->unique();
             $table->foreignId('gender_id')->constrained('genders')->cascadeOnDelete();
             $table->string('Blood_Group');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
