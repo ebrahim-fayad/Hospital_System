@@ -1,6 +1,9 @@
 <div>
 {{--  @extends('Dashboard.layouts.master')  --}}
 @section('css')
+<style>
+    #chat
+</style>
 @endsection
 @section('page-header')
     <!-- breadcrumb -->

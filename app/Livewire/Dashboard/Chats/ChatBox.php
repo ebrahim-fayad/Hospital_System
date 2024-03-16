@@ -11,7 +11,12 @@ use Livewire\Component;
 class ChatBox extends Component
 {
     public $selected_conversation,$messages,$user;
-    protected $listeners = ['load_doctor_conversation', 'load_patient_conversation'];
+    protected $listeners = ['load_doctor_conversation', 'load_patient_conversation', 'refreshData'];
+    public function refreshData($message_id)
+    {
+        $newMessage = Message::findOrFail($message_id);
+        $this->messages->push($newMessage);
+    }
     public function load_doctor_conversation(Conversation $conversation, Doctor $user)
     {
         $this->user=$user;

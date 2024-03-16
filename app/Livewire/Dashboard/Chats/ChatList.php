@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class ChatList extends Component
 {
+    protected $listeners = ['refreshData' => '$refresh'];
     public $user;
 
     // public function getUsersName($conversation)
@@ -34,9 +35,11 @@ class ChatList extends Component
         if (Auth::guard('patient')->check()) {
             $this->user  = Doctor::findOrFail($id);
             $this->dispatch('load_doctor_conversation', conversation: $conversation, user: $this->user)->to(ChatBox::class);
+            $this->dispatch('updateMessageDoctor', conversation: $conversation, user: $this->user)->to(SendMessage::class);
         } else {
             $this->user  = Patient::findOrFail($id);
             $this->dispatch('load_patient_conversation', conversation: $conversation, user: $this->user)->to(ChatBox::class);
+            $this->dispatch('updateMessagePatient', conversation: $conversation, user: $this->user)->to(SendMessage::class);
         }
     }
     public function render()

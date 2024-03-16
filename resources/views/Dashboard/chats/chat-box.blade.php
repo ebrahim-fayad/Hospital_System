@@ -26,7 +26,7 @@
                 class="icon ion-md-information-circle"></i></a>
     </nav>
 </div><!-- main-chat-header -->
-<div class="main-chat-body" id="ChatBody">
+<div class="main-chat-body" id="ChatBody" style="overflow: scroll;height:50vh">
     <div class="content-inner">
         <label class="main-chat-time"><span>3 days ago</span></label>
         @forelse ($messages as $message)

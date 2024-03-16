@@ -1,7 +1,14 @@
-<div>
-    <div class="main-chat-footer">
-        <nav class="nav">
-            <a class="nav-link" data-toggle="tooltip" href="" title="Add Photo"><i class="fas fa-camera"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Attach a File"><i class="fas fa-paperclip"></i></a> <a class="nav-link" data-toggle="tooltip" href="" title="Add Emoticons"><i class="far fa-smile"></i></a> <a class="nav-link" href=""><i class="fas fa-ellipsis-v"></i></a>
-        </nav><input class="form-control" placeholder="Type your message here..." type="text"> <a class="main-msg-send" href=""><i class="far fa-paper-plane"></i></a>
-    </div>
+<div style="margin-top: -4px">
+    @if ($selected_conversation)
+
+    <form class="container">
+        <div class="main-chat-footer">
+            <input class="form-control" wire:model='body' placeholder="Type your message here..." type="text">
+            <a class="main-msg-send" wire:click.prevent='createMessage'  href="#"><i class="far fa-paper-plane"></i></a>
+        </div>
+        @error('body')
+        <div class="text-danger text-center p-3">{{ $message }}</ي>
+            @enderror
+        </form>
+        @endif
 </div>
