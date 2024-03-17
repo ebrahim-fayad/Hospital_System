@@ -65,11 +65,10 @@ Route::group(
             Route::get('/404', function () {
                 return view('Dashboard.404');
             })->name('404');
-        });//end route localization
+        });//end middleware doctor
 
         require __DIR__ . '/auth.php';
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
-        });
-    }
-);
+        });//end route livewire localization
+ });//end route localization
