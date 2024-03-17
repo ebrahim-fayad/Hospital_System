@@ -24,7 +24,7 @@ Route::group(
     function () {
         Route::get('/', function () {
             return view('welcome');
-        })->name('home')->middleware(['auth:patient']);
+        })->name('home');
 
         require __DIR__ . '/auth.php';
         Livewire::setUpdateRoute(function ($handle) {

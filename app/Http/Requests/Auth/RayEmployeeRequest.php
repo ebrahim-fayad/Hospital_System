@@ -41,7 +41,7 @@ class RayEmployeeRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (!auth('ray_employee')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (auth('ray_employee')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

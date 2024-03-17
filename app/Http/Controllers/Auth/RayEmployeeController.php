@@ -16,13 +16,15 @@ class RayEmployeeController extends Controller
     }
     public function store(RayEmployeeRequest $request)
     {
+        // return $request;
 
         if ($request->authenticate()) {
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::RayEmployee);
+        }else{
+            return redirect()->back()->with('error', trans('Dashboard/auth.failed'));
         }
 
-        return redirect()->back()->with('error', trans('Dashboard/auth.failed'));
     }
     public function destroy(Request $request)
     {

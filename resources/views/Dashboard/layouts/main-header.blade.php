@@ -191,8 +191,8 @@
                                 <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All
                                     Read</span>
                             </div>
-                            <p data-count="{{ count(Auth::user()->unreadNotifications ) }}"
-                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{ count(Auth::user()->unreadNotifications ) }}</p>
+                            <p data-count="{{   Auth::guard('doctor')->check()  ? count(Auth::guard('doctor')->user()->unreadNotifications ):0 }}"
+                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{   Auth::guard('doctor')->check()  ? count(Auth::guard('doctor')->user()->unreadNotifications ):0 }}</p>
                         </div>
                         <div class="main-notification-list Notification-scroll" >
                              <div class="new_message">
@@ -209,7 +209,10 @@
                                 </div>
                             </a>
                             </div>
-                            @foreach (Auth::user()->unreadNotifications as $notify)
+                            @if (Auth::guard('doctor')->check())
+
+
+                            @foreach ( Auth::user()->unreadNotifications as $notify)
                                 <a class="d-flex p-3 border-bottom" href="#">
                                     <div class="notifyimg bg-pink">
                                         <i class="la la-file-alt text-white"></i>
@@ -223,6 +226,7 @@
                                     </div>
                                 </a>
                             @endforeach
+                            @endif
                         </div>
                         <div class="dropdown-footer">
                             <a href="">VIEW ALL</a>

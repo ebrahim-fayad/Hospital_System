@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = 'user/dashboard';
     public const ADMIN = 'admin/dashboard';
     public const DOCTOR = 'doctor/dashboard';
-    public const RayEmployee = 'ray_employee/dashboard';
+    public const RayEmployee = 'Ray_employee/dashboard';
     public const LaboratoryEmployee = 'laboratory_employee/dashboard';
     public const PATIENT = 'patient/dashboard';
 

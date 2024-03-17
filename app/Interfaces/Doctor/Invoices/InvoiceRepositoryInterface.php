@@ -3,6 +3,7 @@ namespace App\Interfaces\Doctor\Invoices;
 interface InvoiceRepositoryInterface{
     public function index();
     public function show($id);
+    public function laboratoryInvoice($id);
     public function edit($id);
     // Get reviewInvoices Doctor
     public function reviewInvoices();

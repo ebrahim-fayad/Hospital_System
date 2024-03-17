@@ -40,6 +40,9 @@ Route::group(
                 //############################# review_invoices route ##########################################
                 Route::get('review_invoices', [InvoiceController::class, 'reviewInvoices'])->name('reviewInvoices');
             //############################# end invoices route #############################################
+                //############################# review_invoices route ##########################################
+                Route::get('laboratoryInvoice/{id}', [InvoiceController::class, 'laboratoryInvoice'])->name('laboratoryInvoice');
+            //############################# end invoices route #############################################
 
                 Route::resource('Diagnostics', DiagnosticController::class);
                 //############################# review_invoices route ##########################################

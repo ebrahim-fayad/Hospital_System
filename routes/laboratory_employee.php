@@ -24,10 +24,10 @@ Route::group(
     ],
     function () {
         Route::middleware(['auth:laboratory_employee'])->group(function () {
-            Route::get('laboratory_employee/dashboard', [LaboratoryEmployeeController::class, 'index'])->name('ray_employee.dashboard');
+            Route::get('laboratory_employee/dashboard', [LaboratoryEmployeeController::class, 'index'])->name('laboratory_employee.dashboard');
             Route::resource('Laboratory_Invoices', LaboratoryInvoiceController::class);
             Route::get('Laboratory_Invoice/completedRayInvoices', [LaboratoryInvoiceController::class, 'completedRayInvoices'])->name('ray_employee.completedRayInvoices');
-            Route::get('view_laboratories/{id}', [LaboratoryInvoiceController::class, 'view_laboratories'])->name('view_laboratories');
+            Route::get('views_laboratories/{id}', [LaboratoryInvoiceController::class, 'view_laboratories'])->name('view_laboratories');
         }); //end middleware of  auth:ray_employee
 
 

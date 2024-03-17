@@ -33,7 +33,7 @@ Route::middleware('guest')->group(function () {
     Route::post('login/doctor', [DoctorController::class, 'store'])->name('doctor.login');
     ###################################################################################################
     ####################################  Ray_Employee Route #################################################
-    Route::post('login/ray_employee', [RayEmployeeController::class, 'store'])->name('ray_employee.login');
+    Route::post('login/ray_employees', [RayEmployeeController::class, 'store'])->name('ray_employee.login');
     ###################################################################################################
     ####################################  Laboratory_Employee Route #################################################
     Route::post('login/laboratory_employee', [LaboratoryEmployeeController::class, 'store'])->name('laboratory_employee.login');

@@ -155,8 +155,8 @@
                         <li><a href="#"><span class="fab fa-skype"></span></a></li>
                         <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
                         <li><a title="{{ trans('login_trans.sign_in') }}" href="{{ route('user.login') }}">
-                            @if (Auth::guard('patient')->check())
-                            {{ auth()->user()->name }}
+                            @if (Auth::guard('patient')->check() || Auth::guard('doctor')->check() || Auth::guard('admin')->check() ||Auth::guard('ray_employee')->check() || Auth::guard('laboratory_employee')->check())
+                            {{ Auth::guard('patient')->user()->name ?? Auth::guard('doctor')->user()->name ?? Auth::guard('admin')->user()->name ?? Auth::guard('ray_employee')->user()->name ?? Auth::guard('laboratory_employee')->user()->name}}
                             @else
 
                             <span class="fas fa-user"></span></a>

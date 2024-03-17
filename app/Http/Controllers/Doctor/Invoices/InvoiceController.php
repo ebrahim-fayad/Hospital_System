@@ -50,6 +50,10 @@ class InvoiceController extends Controller
     {
         return $this->Invoice->show($id);
     }
+    public function laboratoryInvoice(string $id)
+    {
+        return $this->Invoice->laboratoryInvoice($id);
+    }
 
     /**
      * Show the form for editing the specified resource.

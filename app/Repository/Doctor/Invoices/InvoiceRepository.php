@@ -5,6 +5,7 @@ namespace App\Repository\Doctor\Invoices;
 use App\Interfaces\Doctor\Invoices\InvoiceRepositoryInterface;
 use App\Models\Doctor;
 use App\Models\Image;
+use App\Models\Laboratory;
 use App\Models\Ray;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -47,6 +48,14 @@ class InvoiceRepository implements InvoiceRepositoryInterface
             return redirect()->route('404');
         }
         return view('Dashboard.DoctorAuth.Invoices.view_rays', compact('rays'));
+    }
+    function laboratoryInvoice($id)
+    {
+        $laboratorie = Laboratory::findOrFail($id);
+        if ($laboratorie->laboratory_employee_id != auth()->user()->id) {
+            return redirect()->route('404');
+        }
+        return view('Dashboard.LaboratoryEmployeesDashboard.LaboratoryInvoices.patient_details', compact('laboratorie'));
     }
     /**
      *

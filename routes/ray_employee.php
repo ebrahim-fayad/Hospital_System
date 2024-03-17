@@ -23,8 +23,11 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
+        // Route::get('Ray/dashboard', function () {
+        //     return view('Dashboard.Rays_Dashboard.Auth.index');
+        // })->middleware(['auth:ray_employee'])->name('ray_employee.dashboard');
         Route::middleware(['auth:ray_employee'])->group(function () {
-            Route::get('ray_employee/dashboard', [RayEmployeeController::class, 'index'])->name('ray_employee.dashboard');
+            Route::get('Ray_employee/dashboard', [RayEmployeeController::class, 'index'])->name('ray_employee.dashboard');
             Route::resource('Rays_Invoices', RayInvoicesController::class);
             Route::get('completed_Ray_Invoices', [RayInvoicesController::class, 'completedRayInvoices'])->name('completedRayInvoices');
         });//end middleware of  auth:ray_employee
@@ -35,11 +38,11 @@ Route::group(
 
 
 
-
-        });//end route of localization
-
         require __DIR__ . '/auth.php';
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });//end route of livewire
+
+        });//end route of localization
+
 
