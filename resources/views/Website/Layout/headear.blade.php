@@ -120,6 +120,19 @@
                             </li>
 
                             <li><a href="contact.html">تواصل معانا</a></li>
+                            <li class="dropdown"><a
+                                    href="#">{{ LaravelLocalization::getCurrentLocaleNative() }}</a>
+                                <ul>
+                                    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <li>
+                                            <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         </ul>
                     </div>
 
@@ -141,6 +154,14 @@
                         <li><a href="#"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="#"><span class="fab fa-skype"></span></a></li>
                         <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                        <li><a title="{{ trans('login_trans.sign_in') }}" href="{{ route('user.login') }}">
+                            @if (Auth::guard('patient')->check())
+                            {{ auth()->user()->name }}
+                            @else
+
+                            <span class="fas fa-user"></span></a>
+                            @endif
+                        </li>
                     </ul>
 
                     <!-- Search Btn -->
