@@ -191,42 +191,45 @@
                                 <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All
                                     Read</span>
                             </div>
-                            <p data-count="{{   Auth::guard('doctor')->check()  ? count(Auth::guard('doctor')->user()->unreadNotifications ):0 }}"
-                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">{{   Auth::guard('doctor')->check()  ? count(Auth::guard('doctor')->user()->unreadNotifications ):0 }}</p>
+                            <p data-count="{{ count(auth()->user()->unreadNotifications) }}"
+                                class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">
+                                {{ count(auth()->user()->unreadNotifications) }}</p>
                         </div>
-                        <div class="main-notification-list Notification-scroll" >
-                             <div class="new_message">
-                            <a class="d-flex p-3 border-bottom" href="#">
-                                <div class="notifyimg bg-pink">
-                                    <i class="la la-file-alt text-white"></i>
-                                </div>
-                                <div class="mr-3">
-                                    <h4 class="notification-label mb-1"></h4>
-                                    <div class="notification-subtext"></div>
-                                </div>
-                                <div class="mr-auto">
-                                    <i class="las la-angle-left text-left text-muted"></i>
-                                </div>
-                            </a>
-                            </div>
-                            @if (Auth::guard('doctor')->check())
-
-
-                            @foreach ( Auth::user()->unreadNotifications as $notify)
+                        <div class="main-notification-list Notification-scroll">
+                            <div class="new_message">
                                 <a class="d-flex p-3 border-bottom" href="#">
                                     <div class="notifyimg bg-pink">
                                         <i class="la la-file-alt text-white"></i>
                                     </div>
                                     <div class="mr-3">
-                                        <h5 class="notification-label mb-1">{{ $notify->data['message'] }}  {{ $notify->data['patient'] }}</h5>
-                                        <div class="notification-subtext">{{ $notify->created_at->diffForHumans() }}</div>
+                                        <h4 class="notification-label mb-1"></h4>
+                                        <div class="notification-subtext"></div>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <i class="las la-angle-left text-left text-muted"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                            @foreach (Auth::user()->unreadNotifications as $notify)
+                                <a class="d-flex p-3 border-bottom" href="#">
+                                    <div class="notifyimg bg-pink">
+                                        <i class="la la-file-alt text-white"></i>
+                                    </div>
+                                    <div class="mr-3">
+                                        <h5 class="notification-label mb-1">{{ $notify->data['message'] }}
+                                            {{ $notify->data['patient'] }}</h5>
+                                        <div class="notification-subtext">{{ $notify->created_at->diffForHumans() }}
+                                        </div>
                                     </div>
                                     <div class="mr-auto">
                                         <i class="las la-angle-left text-left text-muted"></i>
                                     </div>
                                 </a>
                             @endforeach
-                            @endif
+
                         </div>
                         <div class="dropdown-footer">
                             <a href="">VIEW ALL</a>
@@ -325,17 +328,17 @@
 
 
 <script>
-     var notificationsWrapper   = $('.dropdown-notifications');
+    var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
-    var notificationsCount  = parseInt(notificationsCountElem.data('count'));
+    var notificationsCount = parseInt(notificationsCountElem.data('count'));
 
     var notifications = notificationsWrapper.find('h4.notification-label');
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
-     Echo.private('create-invoice.{{ auth()->user()->id }}').listen('.create-invoice', (data) => {
+    Echo.private('create-invoice.{{ auth()->user()->id }}').listen('.create-invoice', (data) => {
         var newNotificationHtml = `
-       <h4 class="notification-label mb-1">`+data.message+data.patient+`</h4>
-       <div class="notification-subtext">`+data.created_at+`</div>`;
+       <h4 class="notification-label mb-1">` + data.message + data.patient + `</h4>
+       <div class="notification-subtext">` + data.created_at + `</div>`;
         new_message.show();
         notifications.html(newNotificationHtml);
         notificationsCount += 1;
@@ -345,7 +348,7 @@
     });
 </script>
 <script>
-    $('#test').on("click",function(){
+    $('#test').on("click", function() {
         $('#notified').toggle();
     })
 </script>
