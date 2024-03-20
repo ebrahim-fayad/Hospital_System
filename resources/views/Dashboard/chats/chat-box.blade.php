@@ -30,7 +30,7 @@
     <div class="content-inner">
         <label class="main-chat-time"><span>3 days ago</span></label>
         @forelse ($messages as $message)
-            <div class="media {{ auth()->user()->email == $message->sender_email ?'flex-row-reverse' :" " }} ">
+            <div wire:key='{{ $message->id }}' class="media {{ auth()->user()->email == $message->sender_email ?'flex-row-reverse' :" " }} ">
                 <div class="main-img-user online"><img alt="" src="{{ asset('Dashboard/img/faces/9.jpg') }}">
                 </div>
                 <div class="media-body">

@@ -26,6 +26,13 @@ Broadcast::channel(
     ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratory_employee', 'api']]
 );
 Broadcast::channel(
+    'create-appointment.{admin_id}',
+    function ($user, $admin_id) {
+        return $user->id == $admin_id;
+    },
+    ['guards' => ['web', 'admin', 'patient', 'doctor', 'ray_employee', 'laboratory_employee', 'api']]
+);
+Broadcast::channel(
     'chat.{receiver_id}',
     function (Doctor $user, $receiver_id) {
         return $user->id == $receiver_id;

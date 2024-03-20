@@ -346,6 +346,17 @@
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     });
+    Echo.private('create-appointment.{{ auth()->user()->id }}').listen('.create-appointment', (data) => {
+        var newNotificationHtml = `
+       <h4 class="notification-label mb-1">` + data.message  + `</h4>
+       <div class="notification-subtext">` + data.created_at + `</div>`;
+        new_message.show();
+        notifications.html(newNotificationHtml);
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    });
 </script>
 <script>
     $('#test').on("click", function() {

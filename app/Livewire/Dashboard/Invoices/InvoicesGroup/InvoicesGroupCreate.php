@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Invoices\InvoicesGroup;
 
+use App\Events\PatientAppointmentCreate;
 use App\Models\Doctor;
 use App\Models\FundAccount;
 use App\Models\Group;
@@ -89,6 +90,12 @@ class InvoicesGroupCreate extends Component
                     'credit' => 0.00
                 ]);
             }
+            $data = [
+                'name' => 'test',
+                'doctor' => $this->doctor_id,
+                'section' => $this->section_id,
+            ];
+            event(new PatientAppointmentCreate($data));
             DB::commit();
             $this->dispatch('create');
             session()->flash('add');

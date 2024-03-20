@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Website\Appointments;
 
+use App\Events\PatientAppointmentCreate;
 use App\Models\Doctor;
 use App\Models\PatientAppointment;
 use App\Models\Section;
@@ -29,6 +30,12 @@ class Create extends Component
             'phone'=>$this->phone,
             'notes'=>$this->notes,
         ]);
+        $data = [
+            'name' => $this->name,
+            'doctor' => $this->doctor,
+            'section' => $this->section_id,
+        ];
+        event(new PatientAppointmentCreate($data));
         $this->message=true;
         $this->reset('section_id','doctor','name','email','phone','notes');
         $this->doctors=[];
