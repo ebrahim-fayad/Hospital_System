@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AdminController;
 // use App\Http\Controllers\Auth\RayEmployeeController;
 use App\Http\Controllers\Dashboard\AmbulanceController;
+use App\Http\Controllers\Dashboard\AppointmentsPatient;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\LaboratoryEmployeeController;
@@ -83,6 +84,11 @@ Route::group(
             Route::resource('Laboratory_Employee', LaboratoryEmployeeController::class);
 
             //############################# end LaboratoryEmployee route ######################################
+            //############################# start AppointmentsPatient route ######################################
+            Route::get('appointments', [AppointmentsPatient::class, 'index'])->name('appointments.index');
+            Route::put('appointments/approval/{id}', [AppointmentsPatient::class, 'approval'])->name('appointments.approval');
+            Route::get('appointments/approval', [AppointmentsPatient::class, 'index2'])->name('appointments.index2');
+            //############################# end AppointmentsPatient route ######################################
 
 
 
