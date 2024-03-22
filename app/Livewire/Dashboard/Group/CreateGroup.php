@@ -193,14 +193,9 @@ class CreateGroup extends Component
                             $existingService->pivot->save();
                         }
                     }
-                     $data = [
-                        // 'invoice_id' => $InvoiceGroup->id,
-                        'invoice_name' => $this->name,
-                        'invoice_id' => $Groups->id,
-                    ];
+
                     $users = Doctor::all();
                     Notification::send($users, new CreateGroupInvoice($this->name, $Groups->id));
-                    event(new CreateInvoice($data));
                     $this->reset('GroupsItems', 'name', 'notes');
                     $this->discount_value = 0;
                     $this->showTable = true;
