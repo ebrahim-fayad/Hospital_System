@@ -45,5 +45,14 @@ class PatientAppointmentRepository  implements PatientAppointmentRepositoryInter
         return back();
     }
 
+    /**
+     *
+     * @param mixed $id
+     */
+    function destroy($id) {
+        PatientAppointment::destroy($id);
+        session()->flash('add');
+        return back();
+    }
 }
 

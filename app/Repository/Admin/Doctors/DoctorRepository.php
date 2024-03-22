@@ -39,6 +39,7 @@ class DoctorRepository implements DoctorRepositoryInterface
                 'section_id' => $request->section_id,
                 'phone' => $request->phone,
                 'price' => $request->price,
+                'number_of_statements' => $request->number_of_statements,
             ]);
             $appointments =  $request->appointments;
 
@@ -106,6 +107,7 @@ class DoctorRepository implements DoctorRepositoryInterface
                 'section_id' => $request->section_id,
                 'phone' => $request->phone,
                 'price' => $request->price,
+                'number_of_statements' => $request->number_of_statements,
                 ]);
             $doctor->doctorAppointments()->sync($request->appointments);
             if ($request->photo) {

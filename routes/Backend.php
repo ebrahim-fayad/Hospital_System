@@ -88,6 +88,7 @@ Route::group(
             Route::get('appointments', [AppointmentsPatient::class, 'index'])->name('appointments.index');
             Route::put('appointments/approval/{id}', [AppointmentsPatient::class, 'approval'])->name('appointments.approval');
             Route::get('appointments/approval', [AppointmentsPatient::class, 'index2'])->name('appointments.index2');
+            Route::delete('appointments/destroy/{id}', [AppointmentsPatient::class, 'destroy'])->name('appointments.destroy');
             //############################# end AppointmentsPatient route ######################################
 
 

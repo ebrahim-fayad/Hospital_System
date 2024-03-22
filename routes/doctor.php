@@ -29,7 +29,7 @@ Route::group(
     ],
     function () {
 
-        Route::middleware('auth:doctor')->group(function () {
+        Route::middleware(['auth:doctor', 'DoctorStatus'])->group(function () {
             Route::get('doctor/dashboard', [DoctorController::class, 'index'])->name('doctor.dashboard');
             Route::prefix('Doctor')->group(function () {
                 Route::resource('invoices', InvoiceController::class);

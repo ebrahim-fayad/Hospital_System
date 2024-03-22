@@ -25,4 +25,8 @@ class AppointmentsPatient extends Controller
     {
         return $this->PatientAppointments->approval($request, $id);
     }
+    public function destroy($id)
+    {
+        return $this->PatientAppointments->destroy( $id);
+    }
 }

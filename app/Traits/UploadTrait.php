@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\Image;
+use App\Models\Patient;
+use App\Models\PatientAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,6 +49,17 @@ trait UploadTrait
         foreach ($images as $image) {
             Storage::disk($disk)->delete($image->fileName);
             $image->delete();
+        }
+    }
+    public function endPatientAppointment($patient_id,$doctor_id)
+    {
+        $patient = Patient::findOrFail($patient_id);
+        $appointment_info= PatientAppointment::where('doctor_id', $doctor_id)->where('email', $patient->email)->where('type','مؤكد')->first();
+        if ($appointment_info) {
+            $appointment = PatientAppointment::findOrFail($appointment_info->id);
+            $appointment->update([
+                'type' => 'منتهي'
+            ]);
         }
     }
 }

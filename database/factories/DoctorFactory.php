@@ -25,6 +25,7 @@ class DoctorFactory extends Factory
             'email_verified_at'=>now(),
             'password'=>Hash::make('12345678'),
             'phone'=>$this->faker->phoneNumber,
+            'number_of_statements'=>5,
         ];
     }
 }

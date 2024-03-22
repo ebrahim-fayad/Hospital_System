@@ -37,4 +37,6 @@ return array (
   'submit' => 'submit',
   'update_password' => 'Change Password',
   'view_all' => 'view all Doctors',
+    'Number_of_daily_statements' => "Number of daily statements",
+    'doctor_limit'=> 'The maximum number of visits for this doctor has been reached on this day, please choose another day'
 );

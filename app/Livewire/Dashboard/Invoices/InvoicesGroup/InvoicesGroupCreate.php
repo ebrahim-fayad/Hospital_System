@@ -10,12 +10,14 @@ use App\Models\Invoice;
 use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\SectionTranslation;
+use App\Traits\UploadTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class InvoicesGroupCreate extends Component
 {
+    use UploadTrait;
     public $tax_rate = 17;
     public $price, $discount_value = 0, $patient_id, $doctor_id, $section_id, $type, $Group_id, $tax_value = 0, $subtotal, $Total_after_discount;
     public function get_section()
@@ -90,6 +92,7 @@ class InvoicesGroupCreate extends Component
                     'credit' => 0.00
                 ]);
             }
+            $this->endPatientAppointment($this->patient_id, $this->doctor_id);
             $data = [
                 'name' => 'test',
                 'doctor' => $this->doctor_id,

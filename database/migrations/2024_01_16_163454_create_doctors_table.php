@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->boolean('status')->default(1);
+            $table->integer('number_of_statements');
             $table->rememberToken();
             $table->timestamps();
         });

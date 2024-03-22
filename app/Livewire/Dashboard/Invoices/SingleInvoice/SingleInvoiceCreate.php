@@ -11,6 +11,7 @@ use App\Models\PatientAccount;
 use App\Models\SectionTranslation;
 use App\Models\Service;
 use App\Notifications\SingleInvoice;
+use App\Traits\UploadTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -18,6 +19,7 @@ use Livewire\Component;
 
 class SingleInvoiceCreate extends Component
 {
+    use UploadTrait;
     public $tax_rate = 17;
     public $price, $discount_value = 0, $patient_id, $doctor_id, $section_id, $type, $Service_id, $tax_value = 0, $subtotal, $Total_after_discount;
     protected $rules = [
@@ -99,6 +101,7 @@ class SingleInvoiceCreate extends Component
                     'credit' => 0.00
                 ]);
             }
+            $this->endPatientAppointment($this->patient_id,$this->doctor_id);
             $data = [
                 'patient' => $this->patient_id,
                 'invoice_id' => $singleInvoice->id,
