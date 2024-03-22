@@ -194,8 +194,8 @@ class CreateGroup extends Component
                         }
                     }
 
-                    $users = Doctor::all();
-                    Notification::send($users, new CreateGroupInvoice($this->name, $Groups->id));
+                    // $users = Doctor::all();
+                    // Notification::send($users, new CreateGroupInvoice($this->name, $Groups->id));
                     $this->reset('GroupsItems', 'name', 'notes');
                     $this->discount_value = 0;
                     $this->showTable = true;
