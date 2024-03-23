@@ -52,7 +52,7 @@ class InvoiceRepository implements InvoiceRepositoryInterface
     function laboratoryInvoice($id)
     {
         $laboratorie = Laboratory::findOrFail($id);
-        if ($laboratorie->laboratory_employee_id != auth()->user()->id) {
+        if ($laboratorie->doctor_id != auth()->user()->id) {
             return redirect()->route('404');
         }
         return view('Dashboard.LaboratoryEmployeesDashboard.LaboratoryInvoices.patient_details', compact('laboratorie'));
